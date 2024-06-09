@@ -152,6 +152,10 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
       role_arn         = "arn:aws:iam::${local.aws_account_id}:role/service-role/IncidentManagerIncidentAccessServiceRole"
       document_version = "$LATEST"
       target_account   = "RESPONSE_PLAN_OWNER_ACCOUNT"
+      parameter {
+        name   = "Environment"
+        values = ["Production"]
+      }
       dynamic_parameters = {
         resources   = "INVOLVED_RESOURCES"
         incidentARN = "INCIDENT_RECORD_ARN"
