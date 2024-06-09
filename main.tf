@@ -23,11 +23,6 @@ resource "aws_ssmcontacts_contact" "primary_contact" {
   depends_on = [aws_ssmincidents_replication_set.default]
 }
 
-resource "aws_ssmcontacts_contact" "escalation_plan" {
-  alias = "escalation-plan"
-  type  = "ESCALATION"
-}
-
 resource "aws_ssmcontacts_contact_channel" "primary_contact_email" {
   contact_id = aws_ssmcontacts_contact.primary_contact.arn
 
@@ -62,7 +57,7 @@ resource "aws_ssmcontacts_contact_channel" "primary_contact_voice" {
 }
 
 resource "aws_ssmcontacts_plan" "default" {
-  contact_id = aws_ssmcontacts_contact.escalation_plan.arn
+  contact_id = aws_ssmcontacts_contact.primary_contact.arn
 
   stage {
     duration_in_minutes = 0
@@ -170,7 +165,7 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
 
   display_name = "critical-incident-cloudwatch"
   chat_channel = [var.sns_topic_notification_arn]
-  engagements  = [aws_ssmcontacts_contact.escalation_plan.arn]
+  engagements  = [aws_ssmcontacts_contact.primary_contact.arn]
 
   action {
     ssm_automation {
@@ -207,7 +202,7 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_security_hub" 
 
   display_name = "critical-incident-security-hub"
   chat_channel = [var.sns_topic_notification_arn]
-  engagements  = [aws_ssmcontacts_contact.escalation_plan.arn]
+  engagements  = [aws_ssmcontacts_contact.primary_contact.arn]
 
   action {
     ssm_automation {
