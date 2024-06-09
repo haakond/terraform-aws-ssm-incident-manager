@@ -143,8 +143,8 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
   }
 
   display_name = "critical-incident-cloudwatch"
-  chat_channel = [var.sns_topic_notification_arn]
-  engagements  = [aws_ssmcontacts_contact.primary_contact.arn]
+  #chat_channel = [var.sns_topic_notification_arn]
+  engagements = [aws_ssmcontacts_contact.primary_contact.arn]
 
   action {
     ssm_automation {
@@ -189,14 +189,22 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_security_hub" 
   }
 
   display_name = "critical-incident-security-hub"
-  chat_channel = [var.sns_topic_notification_arn]
-  engagements  = [aws_ssmcontacts_contact.primary_contact.arn]
+  #chat_channel = [var.sns_topic_notification_arn]
+  engagements = [aws_ssmcontacts_contact.primary_contact.arn]
 
   action {
     ssm_automation {
       document_name  = "AWSIncidents-CriticalIncidentRunbookTemplate"
       role_arn       = "arn:aws:iam::${local.aws_account_id}:role/service-role/IncidentManagerIncidentAccessServiceRole"
       target_account = "RESPONSE_PLAN_OWNER_ACCOUNT"
+      parameter {
+        name   = "Environment"
+        values = ["Production"]
+      }
+      dynamic_parameters = {
+        resources   = "INVOLVED_RESOURCES"
+        incidentARN = "INCIDENT_RECORD_ARN"
+      }
     }
   }
 
