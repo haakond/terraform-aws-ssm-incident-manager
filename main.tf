@@ -15,7 +15,7 @@ resource "aws_ssmincidents_replication_set" "default" {
 resource "aws_ssmcontacts_contact" "primary_contact" {
   alias        = "primary-contact"
   display_name = var.primary_contact_display_name
-  type         = "PERSONAL"
+  type         = "ESCALATION"
 
   tags = {
     key = "primary-contact"
@@ -56,13 +56,8 @@ resource "aws_ssmcontacts_contact_channel" "primary_contact_voice" {
   type = "VOICE"
 }
 
-resource "aws_ssmcontacts_contact" "escalation_plan" {
-  alias = "escalation-plan"
-  type  = "ESCALATION"
-}
-
 resource "aws_ssmcontacts_plan" "default" {
-  contact_id = aws_ssmcontacts_contact.escalation_plan.arn
+  contact_id = aws_ssmcontacts_contact.primary_contact.arn
 
   stage {
     duration_in_minutes = 0
