@@ -1,3 +1,4 @@
+# Systems Manager resources
 resource "aws_ssmincidents_replication_set" "default" {
   region {
     name = "eu-central-1"
