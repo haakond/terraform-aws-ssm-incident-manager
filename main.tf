@@ -60,7 +60,7 @@ resource "aws_ssmcontacts_plan" "default" {
   contact_id = aws_ssmcontacts_contact.primary_contact.arn
 
   stage {
-    duration_in_minutes = 0
+    duration_in_minutes = 1
 
     target {
       channel_target_info {
@@ -70,7 +70,7 @@ resource "aws_ssmcontacts_plan" "default" {
     }
   }
   stage {
-    duration_in_minutes = 10
+    duration_in_minutes = 5
 
     target {
       channel_target_info {
@@ -148,9 +148,14 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
 
   action {
     ssm_automation {
-      document_name  = "AWSIncidents-CriticalIncidentRunbookTemplate"
-      role_arn       = "arn:aws:iam::${local.aws_account_id}:role/service-role/IncidentManagerIncidentAccessServiceRole"
-      target_account = "RESPONSE_PLAN_OWNER_ACCOUNT"
+      document_name    = "AWSIncidents-CriticalIncidentRunbookTemplate"
+      role_arn         = "arn:aws:iam::${local.aws_account_id}:role/service-role/IncidentManagerIncidentAccessServiceRole"
+      document_version = "$LATEST"
+      target_account   = "RESPONSE_PLAN_OWNER_ACCOUNT"
+      dynamic_parameters = {
+        resources   = "INVOLVED_RESOURCES"
+        incidentARN = "INCIDENT_RECORD_ARN"
+      }
     }
   }
 
