@@ -15,7 +15,7 @@ resource "aws_ssmincidents_replication_set" "default" {
 resource "aws_ssmcontacts_contact" "primary_contact" {
   alias        = "primary-contact"
   display_name = var.primary_contact_display_name
-  type         = "ESCALATION"
+  type         = "PERSONAL"
 
   tags = {
     key = "primary-contact"
@@ -63,13 +63,6 @@ resource "aws_ssmcontacts_plan" "default" {
     duration_in_minutes = 0
 
     target {
-      contact_target_info {
-        is_essential = true
-        contact_id   = aws_ssmcontacts_contact.primary_contact.arn
-      }
-    }
-
-    target {
       channel_target_info {
         retry_interval_in_minutes = 5
         contact_channel_id        = aws_ssmcontacts_contact_channel.primary_contact_email.arn
@@ -80,13 +73,6 @@ resource "aws_ssmcontacts_plan" "default" {
     duration_in_minutes = 10
 
     target {
-      contact_target_info {
-        is_essential = true
-        contact_id   = aws_ssmcontacts_contact.primary_contact.arn
-      }
-    }
-
-    target {
       channel_target_info {
         retry_interval_in_minutes = 5
         contact_channel_id        = aws_ssmcontacts_contact_channel.primary_contact_sms.arn
@@ -95,13 +81,6 @@ resource "aws_ssmcontacts_plan" "default" {
   }
   stage {
     duration_in_minutes = 10
-
-    target {
-      contact_target_info {
-        is_essential = true
-        contact_id   = aws_ssmcontacts_contact.primary_contact.arn
-      }
-    }
 
     target {
       channel_target_info {
