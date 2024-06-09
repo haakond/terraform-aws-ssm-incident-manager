@@ -135,9 +135,9 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
       Name = "critical-incident-cloudwatch"
     }
 
-    notification_target {
-      sns_topic_arn = var.sns_topic_notification_arn
-    }
+    #notification_target {
+    #  sns_topic_arn = var.sns_topic_notification_arn
+    #}
 
     summary = "Follow Critical Incident for CloudWatch alert process."
   }
@@ -181,9 +181,9 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_security_hub" 
       Name = "critical-incident-security-hub"
     }
 
-    notification_target {
-      sns_topic_arn = var.sns_topic_notification_arn
-    }
+    #notification_target {
+    #  sns_topic_arn = var.sns_topic_notification_arn
+    #}
 
     summary = "Follow Critical Incident for Security Hub alert process."
   }
