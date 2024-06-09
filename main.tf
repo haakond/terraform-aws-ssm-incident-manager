@@ -56,8 +56,13 @@ resource "aws_ssmcontacts_contact_channel" "primary_contact_voice" {
   type = "VOICE"
 }
 
+resource "aws_ssmcontacts_contact" "escalation_plan" {
+  alias = "escalation-plan"
+  type  = "ESCALATION"
+}
+
 resource "aws_ssmcontacts_plan" "default" {
-  contact_id = aws_ssmcontacts_contact.primary_contact.arn
+  contact_id = aws_ssmcontacts_contact.escalation_plan.arn
 
   stage {
     duration_in_minutes = 0
@@ -171,7 +176,7 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
     ssm_automation {
       document_name  = "AWSIncidents-CriticalIncidentRunbookTemplate"
       role_arn       = "arn:aws:iam::${local.aws_account_id}:role/service-role/IncidentManagerIncidentAccessServiceRole"
-      target_account = local.aws_account_id
+      target_account = "RESPONSE_PLAN_OWNER_ACCOUNT"
     }
   }
 
@@ -208,7 +213,7 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_security_hub" 
     ssm_automation {
       document_name  = "AWSIncidents-CriticalIncidentRunbookTemplate"
       role_arn       = "arn:aws:iam::${local.aws_account_id}:role/service-role/IncidentManagerIncidentAccessServiceRole"
-      target_account = local.aws_account_id
+      target_account = "RESPONSE_PLAN_OWNER_ACCOUNT"
     }
   }
 
