@@ -15,7 +15,7 @@ resource "aws_ssmincidents_replication_set" "default" {
 resource "aws_ssmcontacts_contact" "primary_contact" {
   alias        = "primary-contact"
   display_name = var.primary_contact_display_name
-  type         = "ESCALATION"
+  type         = "PERSONAL"
 
   tags = {
     key = "primary-contact"
