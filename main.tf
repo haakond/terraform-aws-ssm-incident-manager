@@ -149,7 +149,7 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
   action {
     ssm_automation {
       document_name    = "AWSIncidents-CriticalIncidentRunbookTemplate"
-      role_arn         = "arn:aws:iam::${local.aws_account_id}:role/service-role/IncidentManagerIncidentAccessServiceRole"
+      role_arn         = "arn:aws:iam::${local.aws_account_id}:role/aws-service-role/ssm-incidents.amazonaws.com/AWSServiceRoleForIncidentManager"
       document_version = "$LATEST"
       target_account   = "RESPONSE_PLAN_OWNER_ACCOUNT"
       parameter {
