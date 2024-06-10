@@ -91,43 +91,6 @@ resource "aws_ssmcontacts_plan" "primary_contact" {
   }
 }
 
-resource "aws_ssmcontacts_rotation" "default_rotation" {
-  contact_ids = [
-    aws_ssmcontacts_contact.primary_contact.arn
-  ]
-
-  name = "default-rotation"
-
-  recurrence {
-    number_of_on_calls    = 1
-    recurrence_multiplier = 1
-    weekly_settings {
-      day_of_week = "MON"
-      hand_off_time {
-        hour_of_day    = 08
-        minute_of_hour = 00
-      }
-    }
-
-
-    shift_coverages {
-      map_block_key = "MON"
-      coverage_times {
-        start {
-          hour_of_day    = 09
-          minute_of_hour = 00
-        }
-        end {
-          hour_of_day    = 16
-          minute_of_hour = 00
-        }
-      }
-    }
-  }
-  time_zone_id = "Europe/Oslo"
-  depends_on   = [aws_ssmincidents_replication_set.default]
-}
-
 resource "aws_ssmincidents_response_plan" "critical_response_plan_service_unavailable" {
   name = "critical-service-unavailable"
 

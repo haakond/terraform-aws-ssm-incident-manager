@@ -31,7 +31,6 @@ No modules.
 | [aws_ssmcontacts_contact_channel.primary_contact_sms](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_voice](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
 | [aws_ssmcontacts_plan.primary_contact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_plan) | resource |
-| [aws_ssmcontacts_rotation.default_rotation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_rotation) | resource |
 | [aws_ssmincidents_replication_set.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_replication_set) | resource |
 | [aws_ssmincidents_response_plan.critical_response_plan_security_hub](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
 | [aws_ssmincidents_response_plan.critical_response_plan_service_unavailable](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
