@@ -23,6 +23,28 @@ resource "aws_ssmcontacts_contact" "primary_contact" {
   depends_on = [aws_ssmincidents_replication_set.default]
 }
 
+resource "aws_ssmcontacts_contact" "escalation_contact" {
+  alias        = "escalation-contact"
+  display_name = var.escalation_contact_display_name
+  type         = "ESCALATION"
+
+  tags = {
+    key = "escalation-contact"
+  }
+  depends_on = [aws_ssmincidents_replication_set.default]
+}
+
+resource "aws_ssmcontacts_contact_channel" "escalation_contact_email" {
+  contact_id = aws_ssmcontacts_contact.escalation_contact.arn
+
+  delivery_address {
+    simple_address = var.escalation_contact_email_address
+  }
+
+  name = "escalation-contact-email"
+  type = "EMAIL"
+}
+
 resource "aws_ssmcontacts_contact_channel" "primary_contact_email" {
   contact_id = aws_ssmcontacts_contact.primary_contact.arn
 
@@ -56,7 +78,7 @@ resource "aws_ssmcontacts_contact_channel" "primary_contact_voice" {
   type = "VOICE"
 }
 
-resource "aws_ssmcontacts_plan" "default" {
+resource "aws_ssmcontacts_plan" "primary_contact" {
   contact_id = aws_ssmcontacts_contact.primary_contact.arn
 
   stage {
@@ -91,7 +113,7 @@ resource "aws_ssmcontacts_plan" "default" {
   }
 }
 
-resource "aws_ssmcontacts_rotation" "default" {
+resource "aws_ssmcontacts_rotation" "default_rotation" {
   contact_ids = [
     aws_ssmcontacts_contact.primary_contact.arn
   ]
@@ -104,25 +126,18 @@ resource "aws_ssmcontacts_rotation" "default" {
     weekly_settings {
       day_of_week = "MON"
       hand_off_time {
-        hour_of_day    = 09
+        hour_of_day    = 08
         minute_of_hour = 00
       }
     }
 
-    weekly_settings {
-      day_of_week = "FRI"
-      hand_off_time {
-        hour_of_day    = 15
-        minute_of_hour = 57
-      }
-    }
 
     shift_coverages {
       map_block_key = "MON"
       coverage_times {
         start {
-          hour_of_day    = 08
-          minute_of_hour = 30
+          hour_of_day    = 09
+          minute_of_hour = 00
         }
         end {
           hour_of_day    = 16
@@ -135,25 +150,25 @@ resource "aws_ssmcontacts_rotation" "default" {
   depends_on   = [aws_ssmincidents_replication_set.default]
 }
 
-resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
-  name = "Critical-CloudWatch"
+resource "aws_ssmincidents_response_plan" "critical_response_plan_service_unavailable" {
+  name = "critical-service-unavailable"
 
   incident_template {
-    title         = "critical-cloudwatch"
+    title         = "critical-service-unavailable"
     impact        = "1"
-    dedupe_string = "critical-incident-cloudwatch"
+    dedupe_string = "critical-service-unavailable"
     incident_tags = {
-      Name = "critical-incident-cloudwatch"
+      Name = "critical-service-unavailable"
     }
 
     #notification_target {
     #  sns_topic_arn = var.sns_topic_notification_arn
     #}
 
-    summary = "Follow Critical Incident for CloudWatch alert process."
+    summary = "Follow Critical Incident Service Unavailable process."
   }
 
-  display_name = "critical-incident-cloudwatch"
+  display_name = "critical-service-unavailable"
   #chat_channel = [var.sns_topic_notification_arn]
   engagements = [aws_ssmcontacts_contact.primary_contact.arn]
 
@@ -175,7 +190,7 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_cloudwatch" {
   }
 
   tags = {
-    Name = "critical-incident-cloudwatch-response-plan"
+    Name = "critical-service-unavailable-response-plan"
   }
 
   depends_on = [aws_ssmincidents_replication_set.default]
