@@ -124,7 +124,7 @@ resource "aws_ssmcontacts_rotation" "default_rotation" {
       }
     }
   }
-  start_time   = "2024-06-01T00:00:00+00:00"
+  start_time   = "2024-06-11T00:00:00+00:00"
   time_zone_id = "Europe/Oslo"
   depends_on   = [aws_ssmincidents_replication_set.default]
 }
