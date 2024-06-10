@@ -101,17 +101,28 @@ resource "aws_ssmcontacts_rotation" "default" {
   recurrence {
     number_of_on_calls    = 1
     recurrence_multiplier = 1
-    daily_settings {
-      hour_of_day    = 9
-      minute_of_hour = 00
+    weekly_settings {
+      day_of_week = "MON"
+      hand_off_time {
+        hour_of_day    = 09
+        minute_of_hour = 00
+      }
+    }
+
+    weekly_settings {
+      day_of_week = "FRI"
+      hand_off_time {
+        hour_of_day    = 15
+        minute_of_hour = 57
+      }
     }
 
     shift_coverages {
       map_block_key = "MON"
       coverage_times {
         start {
-          hour_of_day    = 09
-          minute_of_hour = 00
+          hour_of_day    = 08
+          minute_of_hour = 30
         }
         end {
           hour_of_day    = 16
