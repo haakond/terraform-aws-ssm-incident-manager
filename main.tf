@@ -23,28 +23,6 @@ resource "aws_ssmcontacts_contact" "primary_contact" {
   depends_on = [aws_ssmincidents_replication_set.default]
 }
 
-resource "aws_ssmcontacts_contact" "escalation_contact" {
-  alias        = "escalation-contact"
-  display_name = var.escalation_contact_display_name
-  type         = "ESCALATION"
-
-  tags = {
-    key = "escalation-contact"
-  }
-  depends_on = [aws_ssmincidents_replication_set.default]
-}
-
-resource "aws_ssmcontacts_contact_channel" "escalation_contact_email" {
-  contact_id = aws_ssmcontacts_contact.escalation_contact.arn
-
-  delivery_address {
-    simple_address = var.escalation_contact_email_address
-  }
-
-  name = "escalation-contact-email"
-  type = "EMAIL"
-}
-
 resource "aws_ssmcontacts_contact_channel" "primary_contact_email" {
   contact_id = aws_ssmcontacts_contact.primary_contact.arn
 
