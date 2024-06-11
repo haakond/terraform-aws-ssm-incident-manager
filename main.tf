@@ -28,7 +28,7 @@ resource "awscc_ssmcontacts_contact" "oncall_schedule" {
   display_name = "default-schedule"
   type         = "ONCALL_SCHEDULE"
   plan = [{
-    rotation_ids = [aws_ssmcontacts_rotation.business_hours.id]
+    rotation_ids = [aws_ssmcontacts_rotation.default_rotation.id]
   }]
   depends_on = [aws_ssmincidents_replication_set.default]
 }
@@ -101,12 +101,12 @@ resource "aws_ssmcontacts_plan" "primary_contact" {
   }
 }
 
-resource "aws_ssmcontacts_rotation" "business_hours" {
+resource "aws_ssmcontacts_rotation" "default_rotation" {
   contact_ids = [
     aws_ssmcontacts_contact.primary_contact.arn
   ]
 
-  name = "business-hours"
+  name = "default-rotation"
 
   recurrence {
     number_of_on_calls    = 1
@@ -141,7 +141,7 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
       }
     }
   }
-  start_time   = "2024-06-11T00:00:00+00:00"
+  start_time   = "2024-06-17T00:00:00+00:00"
   time_zone_id = "Europe/Oslo"
   depends_on   = [aws_ssmincidents_replication_set.default]
 }
