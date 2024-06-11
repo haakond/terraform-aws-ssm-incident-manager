@@ -119,7 +119,7 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
     # Shift coverage for MON to FRI
     shift_coverages = [
       {
-        day_of_week = "TUE"
+        day_of_week = "MON"
         coverage_times = [{
           start_time = "09:00"
           end_time   = "16:00"
