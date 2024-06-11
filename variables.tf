@@ -3,6 +3,11 @@ variable "primary_contact_display_name" {
   description = "Primary contact display name."
 }
 
+variable "primary_contact_alias" {
+  type        = string
+  description = "Primary contact alias."
+}
+
 variable "primary_contact_email_address" {
   type        = string
   description = "Valid email address (required)."

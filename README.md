@@ -46,6 +46,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_primary_contact_alias"></a> [primary\_contact\_alias](#input\_primary\_contact\_alias) | Primary contact alias. | `string` | n/a | yes |
 | <a name="input_primary_contact_display_name"></a> [primary\_contact\_display\_name](#input\_primary\_contact\_display\_name) | Primary contact display name. | `string` | n/a | yes |
 | <a name="input_primary_contact_email_address"></a> [primary\_contact\_email\_address](#input\_primary\_contact\_email\_address) | Valid email address (required). | `string` | n/a | yes |
 | <a name="input_primary_contact_phone_number"></a> [primary\_contact\_phone\_number](#input\_primary\_contact\_phone\_number) | Valid phone number in format '+' followed by the country code and phone number. | `string` | n/a | yes |
