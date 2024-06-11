@@ -23,16 +23,6 @@ resource "aws_ssmcontacts_contact" "primary_contact" {
   depends_on = [aws_ssmincidents_replication_set.default]
 }
 
-resource "awscc_ssmcontacts_contact" "oncall_schedule" {
-  alias        = "default-schedule"
-  display_name = "default-schedule"
-  type         = "ONCALL_SCHEDULE"
-  plan = [{
-    rotation_ids = [awscc_ssmcontacts_rotation.default_rotation.id]
-  }]
-  depends_on = [aws_ssmincidents_replication_set.default]
-}
-
 resource "aws_ssmcontacts_contact_channel" "primary_contact_email" {
   contact_id = aws_ssmcontacts_contact.primary_contact.arn
 
@@ -99,36 +89,6 @@ resource "aws_ssmcontacts_plan" "primary_contact" {
       }
     }
   }
-}
-
-resource "awscc_ssmcontacts_rotation" "default_rotation" {
-  contact_ids = [
-    aws_ssmcontacts_contact.primary_contact.arn
-  ]
-
-  name = "default"
-
-  recurrence = {
-    number_of_on_calls    = 1
-    recurrence_multiplier = 1
-    weekly_settings = [{
-      day_of_week   = "MON"
-      hand_off_time = "08:30"
-    }]
-
-    # Shift coverage for MON to FRI
-    shift_coverages = [{
-      day_of_week = "MON"
-      coverage_times = [{
-        start_time = "09:00"
-        end_time   = "16:00"
-      }]
-      }
-    ]
-  }
-  start_time   = "2024-06-17T00:00:00"
-  time_zone_id = "Europe/Oslo"
-  depends_on   = [aws_ssmincidents_replication_set.default]
 }
 
 resource "aws_ssmincidents_response_plan" "critical_response_plan_service_unavailable" {
