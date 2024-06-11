@@ -110,19 +110,11 @@ resource "aws_ssmcontacts_rotation" "default_rotation" {
 
   recurrence {
     number_of_on_calls    = 1
-    recurrence_multiplier = 1
+    recurrence_multiplier = 5
     weekly_settings {
       day_of_week = "MON"
       hand_off_time {
         hour_of_day    = 8
-        minute_of_hour = 00
-      }
-    }
-
-    weekly_settings {
-      day_of_week = "FRI"
-      hand_off_time {
-        hour_of_day    = 16
         minute_of_hour = 00
       }
     }
