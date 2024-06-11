@@ -232,6 +232,19 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
         }
       }
     }
+    shift_coverages {
+      map_block_key = "TUE"
+      coverage_times {
+        start {
+          hour_of_day    = 01
+          minute_of_hour = 00
+        }
+        end {
+          hour_of_day    = 23
+          minute_of_hour = 00
+        }
+      }
+    }
   }
 
   start_time   = "2024-06-17T00:00:00+00:00"
