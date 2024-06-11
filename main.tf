@@ -111,12 +111,12 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_service_unavai
 
   display_name = "critical-service-unavailable"
   #chat_channel = [var.sns_topic_notification_arn]
-  engagements = [aws_ssmcontacts_contact.primary_contact.arn]
+  engagements = [awscc_ssmcontacts_contact.oncall_schedule.arn]
 
   action {
     ssm_automation {
       document_name    = "AWSIncidents-CriticalIncidentRunbookTemplate"
-      role_arn         = "arn:aws:iam::${local.aws_account_id}:role/aws-service-role/ssm-incidents.amazonaws.com/AWSServiceRoleForIncidentManager"
+      role_arn         = aws_iam_role.service_role_for_ssm_incident_manager.arn
       document_version = "$LATEST"
       target_account   = "RESPONSE_PLAN_OWNER_ACCOUNT"
       parameter {
@@ -157,13 +157,14 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_platform_event
 
   display_name = "critical-platform-event"
   #chat_channel = [var.sns_topic_notification_arn]
-  engagements = [aws_ssmcontacts_contact.primary_contact.arn]
+  engagements = [awscc_ssmcontacts_contact.oncall_schedule.arn]
 
   action {
     ssm_automation {
-      document_name  = "AWSIncidents-CriticalIncidentRunbookTemplate"
-      role_arn       = "arn:aws:iam::${local.aws_account_id}:role/service-role/IncidentManagerIncidentAccessServiceRole"
-      target_account = "RESPONSE_PLAN_OWNER_ACCOUNT"
+      document_name    = "AWSIncidents-CriticalIncidentRunbookTemplate"
+      role_arn         = aws_iam_role.service_role_for_ssm_incident_manager.arn
+      document_version = "$LATEST"
+      target_account   = "RESPONSE_PLAN_OWNER_ACCOUNT"
       parameter {
         name   = "Environment"
         values = ["Production"]
