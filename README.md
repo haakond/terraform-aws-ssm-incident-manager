@@ -35,7 +35,7 @@ No modules.
 | [aws_ssmcontacts_plan.primary_contact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_plan) | resource |
 | [aws_ssmcontacts_rotation.business_hours](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_rotation) | resource |
 | [aws_ssmincidents_replication_set.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_replication_set) | resource |
-| [aws_ssmincidents_response_plan.critical_response_plan_security_hub](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
+| [aws_ssmincidents_response_plan.critical_response_plan_platform_events](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
 | [aws_ssmincidents_response_plan.critical_response_plan_service_unavailable](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
 | [awscc_ssmcontacts_contact.oncall_schedule](https://registry.terraform.io/providers/hashicorp/awscc/0.78.0/docs/resources/ssmcontacts_contact) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |

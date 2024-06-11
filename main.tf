@@ -137,25 +137,25 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_service_unavai
   depends_on = [aws_ssmincidents_replication_set.default]
 }
 
-resource "aws_ssmincidents_response_plan" "critical_response_plan_security_hub" {
-  name = "Critical-SecurityHub"
+resource "aws_ssmincidents_response_plan" "critical_response_plan_platform_events" {
+  name = "critical-platform-event"
 
   incident_template {
-    title         = "critical-security-hub"
+    title         = "critical-platform-event"
     impact        = "1"
-    dedupe_string = "critical-incident-security-hub"
+    dedupe_string = "critical-platform-event"
     incident_tags = {
-      Name = "critical-incident-security-hub"
+      Name = "critical-platform-event"
     }
 
     #notification_target {
     #  sns_topic_arn = var.sns_topic_notification_arn
     #}
 
-    summary = "Follow Critical Incident for Security Hub alert process."
+    summary = "Follow Critical Incident for Platform Event Alert process."
   }
 
-  display_name = "critical-incident-security-hub"
+  display_name = "critical-platform-event"
   #chat_channel = [var.sns_topic_notification_arn]
   engagements = [aws_ssmcontacts_contact.primary_contact.arn]
 
@@ -176,7 +176,7 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_security_hub" 
   }
 
   tags = {
-    Name = "critical-incident-security-hub-response-plan"
+    Name = "critical-platform-event-response-plan"
   }
 
   depends_on = [aws_ssmincidents_replication_set.default]
