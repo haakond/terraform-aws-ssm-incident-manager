@@ -111,15 +111,27 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
   recurrence = {
     number_of_on_calls    = 1
     recurrence_multiplier = 1
-    weekly_settings = [{
-      day_of_week   = "MON"
-      hand_off_time = "08:30"
-    }]
+    weekly_settings = [
+      {
+        day_of_week   = "MON"
+        hand_off_time = "08:30"
+      },
+      {
+        day_of_week   = "TUE"
+        hand_off_time = "08:30"
+      }
+    ]
 
-    # Shift coverage for MON to FRI
     shift_coverages = [
       {
         day_of_week = "MON"
+        coverage_times = [{
+          start_time = "09:00"
+          end_time   = "16:00"
+        }]
+      },
+      {
+        day_of_week = "TUE"
         coverage_times = [{
           start_time = "09:00"
           end_time   = "16:00"
