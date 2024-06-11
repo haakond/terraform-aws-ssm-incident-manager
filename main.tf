@@ -181,3 +181,60 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_security_hub" 
 
   depends_on = [aws_ssmincidents_replication_set.default]
 }
+
+resource "awscc_ssmcontacts_contact" "oncall_schedule" {
+
+  alias        = "default-schedule"
+  display_name = "default-schedule"
+  type         = "ONCALL_SCHEDULE"
+  plan = [{
+    rotation_ids = [aws_ssmcontacts_rotation.business_hours.id]
+  }]
+  depends_on = [aws_ssmincidents_replication_set.default]
+}
+
+resource "aws_ssmcontacts_rotation" "business_hours" {
+  contact_ids = [
+    aws_ssmcontacts_contact.primary_contact.arn
+  ]
+
+  name = "business-hours"
+
+  recurrence {
+    number_of_on_calls    = 1
+    recurrence_multiplier = 1
+    weekly_settings {
+      day_of_week = "WED"
+      hand_off_time {
+        hour_of_day    = 04
+        minute_of_hour = 25
+      }
+    }
+
+    weekly_settings {
+      day_of_week = "FRI"
+      hand_off_time {
+        hour_of_day    = 15
+        minute_of_hour = 57
+      }
+    }
+
+    shift_coverages {
+      map_block_key = "MON"
+      coverage_times {
+        start {
+          hour_of_day    = 01
+          minute_of_hour = 00
+        }
+        end {
+          hour_of_day    = 23
+          minute_of_hour = 00
+        }
+      }
+    }
+  }
+
+  start_time   = "2024-06-17T00:00:00+00:00"
+  time_zone_id = "Europe/Oslo"
+  depends_on   = [aws_ssmincidents_replication_set.default]
+}
