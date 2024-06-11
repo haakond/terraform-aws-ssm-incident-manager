@@ -114,7 +114,7 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
     weekly_settings = [
       {
         day_of_week   = "MON"
-        hand_off_time = "08:30"
+        hand_off_time = "09:00"
       }
     ]
 
@@ -122,7 +122,7 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
       {
         day_of_week = "MON"
         coverage_times = [{
-          start_time = "09:00"
+          start_time = "08:30"
           end_time   = "16:00"
         }]
       }
