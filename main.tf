@@ -124,34 +124,6 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
           start_time = "09:00"
           end_time   = "16:00"
         }]
-      },
-      {
-        day_of_week = "TUE"
-        coverage_times = [{
-          start_time = "09:00"
-          end_time   = "16:00"
-        }]
-      },
-      {
-        day_of_week = "WED"
-        coverage_times = [{
-          start_time = "09:00"
-          end_time   = "16:00"
-        }]
-      },
-      {
-        day_of_week = "THU"
-        coverage_times = [{
-          start_time = "09:00"
-          end_time   = "16:00"
-        }]
-      },
-      {
-        day_of_week = "FRI"
-        coverage_times = [{
-          start_time = "09:00"
-          end_time   = "16:00"
-        }]
       }
     ]
   }
