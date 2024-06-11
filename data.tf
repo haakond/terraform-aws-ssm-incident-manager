@@ -15,19 +15,16 @@ data "aws_iam_policy_document" "policy_for_service_role_for_ssm_incident_manager
       "arn:aws:ssm:*::automation-definition/AWSIncidents-CriticalIncidentRunbookTemplate:*"
     ]
   }
+}
+
+data "aws_iam_policy_document" "assume_role_policy_for_service_role_for_ssm_incident_manager" {
   statement {
-    sid    = "ServiceRoleForIncidentManager2"
-    effect = "Allow"
-    actions = [
-      "sts:AssumeRole",
-    ]
-    resources = [
-      "arn:aws:iam::*:role/AWS-SystemsManager-AutomationExecutionRole"
-    ]
-    condition {
-      test     = "StringEquals"
-      variable = "aws:CalledViaLast"
-      values   = ["ssm.amazonaws.com"]
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["ssm-incidents.amazonaws.com"]
     }
   }
 }
