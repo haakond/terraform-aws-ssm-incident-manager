@@ -23,6 +23,13 @@ resource "aws_ssmcontacts_contact" "primary_contact" {
   depends_on = [aws_ssmincidents_replication_set.default]
 }
 
+resource "aws_ssmcontacts_contact" "oncall_schedule" {
+  alias        = "default-schedule"
+  display_name = "default-schedule"
+  type         = "ONCALL_SCHEDULE"
+  depends_on   = [aws_ssmincidents_replication_set.default]
+}
+
 resource "aws_ssmcontacts_contact_channel" "primary_contact_email" {
   contact_id = aws_ssmcontacts_contact.primary_contact.arn
 

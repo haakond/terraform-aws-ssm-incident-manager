@@ -26,6 +26,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [aws_ssmcontacts_contact.oncall_schedule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact) | resource |
 | [aws_ssmcontacts_contact.primary_contact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_sms](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
