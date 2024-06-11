@@ -117,20 +117,6 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
       hand_off_time = "09:00"
     }]
 
-    weekly_settings = [{
-      day_of_week   = "FRI"
-      hand_off_time = "15:57"
-    }]
-
-    shift_coverages = [
-      {
-        day_of_week = "MON"
-        coverage_times = [{
-          start_time = "08:30"
-          end_time   = "16:00"
-        }]
-      }
-    ]
   }
   start_time   = "2024-06-17T00:00:00"
   time_zone_id = "Europe/Oslo"
