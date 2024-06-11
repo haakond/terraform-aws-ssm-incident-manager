@@ -110,7 +110,7 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
 
   recurrence = {
     number_of_on_calls    = 1
-    recurrence_multiplier = 1
+    recurrence_multiplier = 5
     weekly_settings = [{
       day_of_week   = "MON"
       hand_off_time = "08:30"
