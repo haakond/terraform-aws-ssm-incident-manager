@@ -110,18 +110,18 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
 
   recurrence = {
     number_of_on_calls    = 1
-    recurrence_multiplier = 5
+    recurrence_multiplier = 1
 
     weekly_settings = [{
       day_of_week   = "MON"
-      hand_off_time = "08:30"
+      hand_off_time = "09:00"
     }]
 
     shift_coverages = [
       {
         day_of_week = "MON"
         coverage_times = [{
-          start_time = "09:00"
+          start_time = "08:00"
           end_time   = "16:00"
         }]
       }
