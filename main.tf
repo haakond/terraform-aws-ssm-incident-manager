@@ -117,11 +117,16 @@ resource "awscc_ssmcontacts_rotation" "business_hours" {
       hand_off_time = "09:00"
     }]
 
+    weekly_settings = [{
+      day_of_week   = "FRI"
+      hand_off_time = "15:57"
+    }]
+
     shift_coverages = [
       {
         day_of_week = "MON"
         coverage_times = [{
-          start_time = "08:00"
+          start_time = "08:30"
           end_time   = "16:00"
         }]
       }
