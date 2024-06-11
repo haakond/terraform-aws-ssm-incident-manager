@@ -206,8 +206,8 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
     weekly_settings {
       day_of_week = "WED"
       hand_off_time {
-        hour_of_day    = 04
-        minute_of_hour = 25
+        hour_of_day    = 09
+        minute_of_hour = 00
       }
     }
 
@@ -223,11 +223,11 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
       map_block_key = "MON"
       coverage_times {
         start {
-          hour_of_day    = 01
-          minute_of_hour = 00
+          hour_of_day    = 08
+          minute_of_hour = 30
         }
         end {
-          hour_of_day    = 23
+          hour_of_day    = 16
           minute_of_hour = 00
         }
       }
@@ -236,11 +236,50 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
       map_block_key = "TUE"
       coverage_times {
         start {
-          hour_of_day    = 01
-          minute_of_hour = 00
+          hour_of_day    = 08
+          minute_of_hour = 30
         }
         end {
-          hour_of_day    = 23
+          hour_of_day    = 16
+          minute_of_hour = 00
+        }
+      }
+    }
+    shift_coverages {
+      map_block_key = "WED"
+      coverage_times {
+        start {
+          hour_of_day    = 08
+          minute_of_hour = 30
+        }
+        end {
+          hour_of_day    = 16
+          minute_of_hour = 00
+        }
+      }
+    }
+    shift_coverages {
+      map_block_key = "THU"
+      coverage_times {
+        start {
+          hour_of_day    = 08
+          minute_of_hour = 30
+        }
+        end {
+          hour_of_day    = 16
+          minute_of_hour = 00
+        }
+      }
+    }
+    shift_coverages {
+      map_block_key = "FRI"
+      coverage_times {
+        start {
+          hour_of_day    = 08
+          minute_of_hour = 30
+        }
+        end {
+          hour_of_day    = 16
           minute_of_hour = 00
         }
       }
