@@ -29,6 +29,8 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_iam_role.service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_sns_topic.sns_topic_forwarder_aws_chatbot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
+| [aws_sns_topic_policy.sns_topic_policy_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy) | resource |
 | [aws_ssmcontacts_contact.primary_contact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_sms](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
@@ -43,6 +45,7 @@ No modules.
 | [aws_canonical_user_id.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/canonical_user_id) | data source |
 | [aws_iam_policy_document.assume_role_policy_for_service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.policy_for_service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.sns_topic_policy_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs
