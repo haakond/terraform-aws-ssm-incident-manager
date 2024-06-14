@@ -110,8 +110,8 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_service_unavai
   }
 
   display_name = "critical-service-unavailable"
-  #chat_channel = [var.sns_topic_notification_arn]
-  engagements = [awscc_ssmcontacts_contact.oncall_schedule.arn]
+  chat_channel = [aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn]
+  engagements  = [awscc_ssmcontacts_contact.oncall_schedule.arn]
 
   action {
     ssm_automation {
@@ -156,8 +156,8 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_platform_event
   }
 
   display_name = "critical-platform-event"
-  #chat_channel = [var.sns_topic_notification_arn]
-  engagements = [awscc_ssmcontacts_contact.oncall_schedule.arn]
+  chat_channel = [aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn]
+  engagements  = [awscc_ssmcontacts_contact.oncall_schedule.arn]
 
   action {
     ssm_automation {
