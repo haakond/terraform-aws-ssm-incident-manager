@@ -11,14 +11,14 @@ See [examples/main.tf](examples/main.tf).
 | Name | Version |
 |------|---------|
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.53.0 |
-| <a name="requirement_awscc"></a> [awscc](#requirement\_awscc) | = 0.78.0 |
+| <a name="requirement_awscc"></a> [awscc](#requirement\_awscc) | ~> 1.2.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.53.0 |
-| <a name="provider_awscc"></a> [awscc](#provider\_awscc) | = 0.78.0 |
+| <a name="provider_awscc"></a> [awscc](#provider\_awscc) | ~> 1.2.0 |
 
 ## Modules
 
@@ -40,7 +40,7 @@ No modules.
 | [aws_ssmincidents_replication_set.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_replication_set) | resource |
 | [aws_ssmincidents_response_plan.critical_response_plan_platform_events](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
 | [aws_ssmincidents_response_plan.critical_response_plan_service_unavailable](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
-| [awscc_ssmcontacts_contact.oncall_schedule](https://registry.terraform.io/providers/hashicorp/awscc/0.78.0/docs/resources/ssmcontacts_contact) | resource |
+| [awscc_ssmcontacts_contact.oncall_schedule](https://registry.terraform.io/providers/hashicorp/awscc/latest/docs/resources/ssmcontacts_contact) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_canonical_user_id.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/canonical_user_id) | data source |
 | [aws_iam_policy_document.assume_role_policy_for_service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
