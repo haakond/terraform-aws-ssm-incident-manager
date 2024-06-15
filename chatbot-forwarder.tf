@@ -35,11 +35,7 @@ module "aws_chatbot_notification_forwarder_lambda" {
     dynamodb = {
       effect    = "Allow",
       actions   = ["lambda:InvokeFunction"],
-      resources = [aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn],
-      principals = {
-        type        = "Service"
-        identifiers = ["sns.amazonaws.com"]
-      }
+      resources = [aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn]
     }
   }
   environment_variables = {
