@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     sns = boto3.client('sns')
     target_sns_topic_arn = os.environ['target_sns_topic_arn']
     subscribed_sns_topic_arn = os.environ['subscribed_sns_topic_arn']
-    # Check for key
+
     if not event.get('Records'):
         logger.error("No Records found in event")
         return {
