@@ -59,7 +59,7 @@ data "aws_iam_policy_document" "sns_topic_policy_for_aws_chatbot_forwarder" {
       variable = "AWS:SourceOwner"
 
       values = [
-        data.aws_caller_identity.current.account_id,
+        local.aws_account_id,
       ]
     }
 
@@ -75,6 +75,28 @@ data "aws_iam_policy_document" "sns_topic_policy_for_aws_chatbot_forwarder" {
     principals {
       type        = "Service"
       identifiers = ["ssm-incidents.amazonaws.com"]
+    }
+  }
+  statement {
+    actions = [
+      "sns:Subscribe",
+      "sns:Receive",
+    ]
+    effect = "Allow"
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    resources = [
+      aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn
+    ]
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceOwner"
+
+      values = [
+        local.aws_account_id,
+      ]
     }
   }
 }

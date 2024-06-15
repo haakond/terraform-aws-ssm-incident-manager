@@ -22,7 +22,9 @@ See [examples/main.tf](examples/main.tf).
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_aws_chatbot_notification_forwarder_lambda"></a> [aws\_chatbot\_notification\_forwarder\_lambda](#module\_aws\_chatbot\_notification\_forwarder\_lambda) | git::https://github.com/terraform-aws-modules/terraform-aws-lambda.git?ref=3aa5b7ef58095ab1217c81a756f54501dd21d9e1 |  |
 
 ## Resources
 
@@ -31,6 +33,7 @@ No modules.
 | [aws_iam_role.service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_sns_topic.sns_topic_forwarder_aws_chatbot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
 | [aws_sns_topic_policy.sns_topic_policy_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy) | resource |
+| [aws_sns_topic_subscription.sns_subscription_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription) | resource |
 | [aws_ssmcontacts_contact.primary_contact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_sms](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
