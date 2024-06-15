@@ -11,6 +11,14 @@ def lambda_handler(event, context):
     sns = boto3.client('sns')
     target_sns_topic_arn = os.environ['target_sns_topic_arn']
     subscribed_sns_topic_arn = os.environ['subscribed_sns_topic_arn']
+    # Check for key
+    if not event.get('Records'):
+        logger.error("No Records found in event")
+        return {
+            'statusCode': 400,
+            'body': json.dumps('No Records found in event')
+        }
+
     for record in event['Records']:
         payload = json.dumps(record)
         logger.info(f"Publishing message to SNS topic {target_sns_topic_arn}: {payload}")
