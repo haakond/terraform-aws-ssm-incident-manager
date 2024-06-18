@@ -31,6 +31,7 @@ See [examples/main.tf](examples/main.tf).
 | Name | Type |
 |------|------|
 | [aws_iam_role.service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_lambda_permission.aws_chatbot_notification_forwarder_lambda_sns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission) | resource |
 | [aws_sns_topic.sns_topic_forwarder_aws_chatbot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
 | [aws_sns_topic_policy.sns_topic_policy_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy) | resource |
 | [aws_sns_topic_subscription.sns_subscription_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription) | resource |

@@ -47,6 +47,14 @@ module "aws_chatbot_notification_forwarder_lambda" {
   }
 }
 
+resource "aws_lambda_permission" "aws_chatbot_notification_forwarder_lambda_sns" {
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
+  function_name = module.aws_chatbot_notification_forwarder_lambda.lambda_function_name
+  principal     = "sns.amazonaws.com"
+  source_arn    = aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn
+}
+
 resource "aws_sns_topic_subscription" "sns_subscription_for_aws_chatbot_forwarder" {
   topic_arn  = aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn
   endpoint   = module.aws_chatbot_notification_forwarder_lambda.lambda_function_arn
