@@ -205,7 +205,7 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
     number_of_on_calls    = 1
     recurrence_multiplier = 1
     weekly_settings {
-      day_of_week = "WED"
+      day_of_week = "MON"
       hand_off_time {
         hour_of_day    = 09
         minute_of_hour = 00
@@ -216,7 +216,7 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
       day_of_week = "FRI"
       hand_off_time {
         hour_of_day    = 15
-        minute_of_hour = 57
+        minute_of_hour = 55
       }
     }
 
@@ -287,7 +287,7 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
     }
   }
 
-  start_time   = "2024-06-17T00:00:00+00:00"
+  start_time   = "2024-06-24T00:00:00+00:00"
   time_zone_id = "Europe/Oslo"
   depends_on   = [aws_ssmincidents_replication_set.default]
 }
