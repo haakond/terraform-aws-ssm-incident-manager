@@ -32,10 +32,15 @@ module "aws_chatbot_notification_forwarder_lambda" {
   architectures                   = ["x86_64"]
   attach_policy_statements        = true
   policy_statements = {
-    dynamodb = {
+    lambda = {
       effect    = "Allow",
       actions   = ["lambda:InvokeFunction"],
       resources = [aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn]
+    },
+    sns = {
+      effect    = "Allow",
+      actions   = ["sns:publish"],
+      resources = [var.sns_topic_notification_arn]
     }
   }
   environment_variables = {
