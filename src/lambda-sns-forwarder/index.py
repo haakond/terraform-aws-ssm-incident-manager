@@ -22,7 +22,13 @@ def lambda_handler(event, context):
 
     for record in event['Records']:
         payload = json.dumps(record)
-        sns.publish(TopicArn=target_sns_topic_arn, Message=payload)
+        if not payload.get('Sns'):
+            logger.error("No Sns content found in record")
+            return {
+                'statusCode': 200,
+                'body': json.dumps("No Sns content found in record")
+            }
+        sns.publish(TopicArn=target_sns_topic_arn, Message=payload['Sns'])
         logger.info("Published message to SNS topic " + target_sns_topic_arn + " with payload: " + payload)
     return {
         'statusCode': 200,
