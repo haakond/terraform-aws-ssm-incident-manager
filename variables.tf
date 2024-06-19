@@ -22,3 +22,8 @@ variable "sns_topic_notification_arn" {
   type        = string
   description = "Full ARN to SNS topic for notifications."
 }
+
+variable "rotation_start_time" {
+  type        = string
+  description = "SSM Incident Manager rotation schedule start time in ISO8601 format. Example. \"2024-06-24T08:00:00+00:00\"."
+}

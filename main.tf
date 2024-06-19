@@ -287,7 +287,7 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
     }
   }
 
-  start_time   = "2024-06-19T08:45:00+00:00"
+  start_time   = var.rotation_start_time
   time_zone_id = "Europe/Oslo"
   depends_on   = [aws_ssmincidents_replication_set.default]
 }

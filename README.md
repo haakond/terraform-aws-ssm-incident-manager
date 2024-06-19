@@ -60,6 +60,7 @@ See [examples/main.tf](examples/main.tf).
 | <a name="input_primary_contact_display_name"></a> [primary\_contact\_display\_name](#input\_primary\_contact\_display\_name) | Primary contact display name. | `string` | n/a | yes |
 | <a name="input_primary_contact_email_address"></a> [primary\_contact\_email\_address](#input\_primary\_contact\_email\_address) | Valid email address (required). | `string` | n/a | yes |
 | <a name="input_primary_contact_phone_number"></a> [primary\_contact\_phone\_number](#input\_primary\_contact\_phone\_number) | Valid phone number in format '+' followed by the country code and phone number. | `string` | n/a | yes |
+| <a name="input_rotation_start_time"></a> [rotation\_start\_time](#input\_rotation\_start\_time) | SSM Incident Manager rotation schedule start time in ISO8601 format. Example. "2024-06-24T08:00:00+00:00". | `string` | n/a | yes |
 | <a name="input_sns_topic_notification_arn"></a> [sns\_topic\_notification\_arn](#input\_sns\_topic\_notification\_arn) | Full ARN to SNS topic for notifications. | `string` | n/a | yes |
 
 ## Outputs
