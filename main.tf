@@ -243,7 +243,7 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
 
 resource "aws_ssm_document" "critical_incident_runbook" {
   name            = "critical_incident_runbook"
-  document_type   = "Command"
+  document_type   = "Automation"
   document_format = "YAML"
   content         = <<DOC
 #
