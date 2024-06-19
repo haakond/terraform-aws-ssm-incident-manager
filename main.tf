@@ -91,26 +91,26 @@ resource "aws_ssmcontacts_plan" "primary_contact" {
   }
 }
 
-resource "aws_ssmincidents_response_plan" "critical_response_plan_service_unavailable" {
-  name = "critical-service-unavailable"
+resource "aws_ssmincidents_response_plan" "critical_incident" {
+  name = "critical-incident"
 
   incident_template {
-    title         = "critical-service-unavailable"
+    title         = "critical-incident"
     impact        = "1"
-    dedupe_string = "critical-service-unavailable"
+    dedupe_string = "critical-incident"
     incident_tags = {
-      Name = "critical-service-unavailable"
+      Name = "critical-incident"
     }
 
     #notification_target {
     #  sns_topic_arn = var.sns_topic_notification_arn
     #}
 
-    summary = "Follow Critical Incident Service Unavailable process."
+    summary = "Follow Critical Incident process."
   }
 
   display_name = "critical-service-unavailable"
-  chat_channel = [aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn]
+  chat_channel = [var.chatbot_sns_topic_notification_arn]
   engagements  = [awscc_ssmcontacts_contact.oncall_schedule.arn]
 
   action {
@@ -131,53 +131,7 @@ resource "aws_ssmincidents_response_plan" "critical_response_plan_service_unavai
   }
 
   tags = {
-    Name = "critical-service-unavailable-response-plan"
-  }
-
-  depends_on = [aws_ssmincidents_replication_set.default]
-}
-
-resource "aws_ssmincidents_response_plan" "critical_response_plan_platform_events" {
-  name = "critical-platform-event"
-
-  incident_template {
-    title         = "critical-platform-event"
-    impact        = "1"
-    dedupe_string = "critical-platform-event"
-    incident_tags = {
-      Name = "critical-platform-event"
-    }
-
-    #notification_target {
-    #  sns_topic_arn = var.sns_topic_notification_arn
-    #}
-
-    summary = "Follow Critical Incident for Platform Event Alert process."
-  }
-
-  display_name = "critical-platform-event"
-  chat_channel = [aws_sns_topic.sns_topic_forwarder_aws_chatbot.arn]
-  engagements  = [awscc_ssmcontacts_contact.oncall_schedule.arn]
-
-  action {
-    ssm_automation {
-      document_name    = "AWSIncidents-CriticalIncidentRunbookTemplate"
-      role_arn         = aws_iam_role.service_role_for_ssm_incident_manager.arn
-      document_version = "$LATEST"
-      target_account   = "RESPONSE_PLAN_OWNER_ACCOUNT"
-      parameter {
-        name   = "Environment"
-        values = ["Production"]
-      }
-      dynamic_parameters = {
-        resources   = "INVOLVED_RESOURCES"
-        incidentARN = "INCIDENT_RECORD_ARN"
-      }
-    }
-  }
-
-  tags = {
-    Name = "critical-platform-event-response-plan"
+    Name = "critical-incident-response-plan"
   }
 
   depends_on = [aws_ssmincidents_replication_set.default]

@@ -22,19 +22,13 @@ See [examples/main.tf](examples/main.tf).
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_aws_chatbot_notification_forwarder_lambda"></a> [aws\_chatbot\_notification\_forwarder\_lambda](#module\_aws\_chatbot\_notification\_forwarder\_lambda) | git::https://github.com/terraform-aws-modules/terraform-aws-lambda.git?ref=3aa5b7ef58095ab1217c81a756f54501dd21d9e1 |  |
+No modules.
 
 ## Resources
 
 | Name | Type |
 |------|------|
 | [aws_iam_role.service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_lambda_permission.aws_chatbot_notification_forwarder_lambda_sns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission) | resource |
-| [aws_sns_topic.sns_topic_forwarder_aws_chatbot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
-| [aws_sns_topic_policy.sns_topic_policy_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy) | resource |
-| [aws_sns_topic_subscription.sns_subscription_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription) | resource |
 | [aws_ssmcontacts_contact.primary_contact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
 | [aws_ssmcontacts_contact_channel.primary_contact_sms](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_contact_channel) | resource |
@@ -42,26 +36,24 @@ See [examples/main.tf](examples/main.tf).
 | [aws_ssmcontacts_plan.primary_contact](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_plan) | resource |
 | [aws_ssmcontacts_rotation.business_hours](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmcontacts_rotation) | resource |
 | [aws_ssmincidents_replication_set.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_replication_set) | resource |
-| [aws_ssmincidents_response_plan.critical_response_plan_platform_events](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
-| [aws_ssmincidents_response_plan.critical_response_plan_service_unavailable](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
+| [aws_ssmincidents_response_plan.critical_incident](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssmincidents_response_plan) | resource |
 | [awscc_ssmcontacts_contact.oncall_schedule](https://registry.terraform.io/providers/hashicorp/awscc/latest/docs/resources/ssmcontacts_contact) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_canonical_user_id.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/canonical_user_id) | data source |
 | [aws_iam_policy_document.assume_role_policy_for_service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.policy_for_service_role_for_ssm_incident_manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.sns_topic_policy_for_aws_chatbot_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_chatbot_sns_topic_notification_arn"></a> [chatbot\_sns\_topic\_notification\_arn](#input\_chatbot\_sns\_topic\_notification\_arn) | Full ARN to SNS topic for AWS Chatbot notifications. | `string` | n/a | yes |
 | <a name="input_primary_contact_alias"></a> [primary\_contact\_alias](#input\_primary\_contact\_alias) | Primary contact alias. | `string` | n/a | yes |
 | <a name="input_primary_contact_display_name"></a> [primary\_contact\_display\_name](#input\_primary\_contact\_display\_name) | Primary contact display name. | `string` | n/a | yes |
 | <a name="input_primary_contact_email_address"></a> [primary\_contact\_email\_address](#input\_primary\_contact\_email\_address) | Valid email address (required). | `string` | n/a | yes |
 | <a name="input_primary_contact_phone_number"></a> [primary\_contact\_phone\_number](#input\_primary\_contact\_phone\_number) | Valid phone number in format '+' followed by the country code and phone number. | `string` | n/a | yes |
 | <a name="input_rotation_start_time"></a> [rotation\_start\_time](#input\_rotation\_start\_time) | SSM Incident Manager rotation schedule start time in ISO8601 format. Example. "2024-06-24T08:00:00+00:00". | `string` | n/a | yes |
-| <a name="input_sns_topic_notification_arn"></a> [sns\_topic\_notification\_arn](#input\_sns\_topic\_notification\_arn) | Full ARN to SNS topic for notifications. | `string` | n/a | yes |
 
 ## Outputs
 
