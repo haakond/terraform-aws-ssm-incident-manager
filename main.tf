@@ -1,10 +1,10 @@
 # Systems Manager resources
 resource "aws_ssmincidents_replication_set" "default" {
   region {
-    name = "eu-central-1"
+    name = local.current_region
   }
   region {
-    name = "eu-west-1"
+    name = var.replication_set_fallback_region
   }
 
   tags = {
@@ -101,10 +101,6 @@ resource "aws_ssmincidents_response_plan" "critical_incident" {
     incident_tags = {
       Name = "critical-incident"
     }
-
-    #notification_target {
-    #  sns_topic_arn = var.sns_topic_notification_arn
-    #}
 
     summary = "Follow Critical Incident process."
   }

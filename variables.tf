@@ -27,3 +27,9 @@ variable "rotation_start_time" {
   type        = string
   description = "SSM Incident Manager rotation schedule start time in ISO8601 format. Example. \"2024-06-24T08:00:00+00:00\"."
 }
+
+variable "replication_set_fallback_region" {
+  type        = string
+  default     = "eu-west-1"
+  description = "Replication set fallback region."
+}
