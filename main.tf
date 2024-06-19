@@ -114,6 +114,14 @@ resource "aws_ssmincidents_response_plan" "critical_incident" {
       role_arn         = aws_iam_role.service_role_for_ssm_incident_manager.arn
       document_version = "$LATEST"
       target_account   = "RESPONSE_PLAN_OWNER_ACCOUNT"
+      parameter {
+        name   = "Environment"
+        values = ["Production"]
+      }
+      dynamic_parameters = {
+        resources   = "INVOLVED_RESOURCES"
+        incidentARN = "INCIDENT_RECORD_ARN"
+      }
     }
   }
 
@@ -259,6 +267,13 @@ resource "aws_ssm_document" "critical_incident_runbook" {
 ---
 description: "This document is intended as a template for an incident response runbook in [Incident Manager](https://docs.aws.amazon.com/incident-manager/latest/userguide/index.html).\n\nFor optimal use, create your own automation document by copying the contents of this runbook template and customizing it for your scenario. Then, navigate to your [Response Plan](https://console.aws.amazon.com/systems-manager/incidents/response-plans/home) and associate it with your new automation document; your runbook is automatically started when an incident is created with the associated response plan. For more information, see [Incident Manager - Runbooks](https://docs.aws.amazon.com/incident-manager/latest/userguide/runbooks.html). \v\n\nSuggested customizations include:\n* Updating the text in each step to provide specific guidance and instructions, such as commands to run or links to relevant dashboards\n* Automating actions before triage or diagnosis to gather additional telemetry or diagnostics using aws:executeAwsApi\n* Automating actions in mitigation using aws:executeAutomation, aws:executeScript, or aws:invokeLambdaFunction\n"
 schemaVersion: '0.3'
+parameters:
+  Environment:
+    type: String
+  incidentARN:
+    type: String
+  resources:
+    type: String
 mainSteps:
   - name: Triage
     action: 'aws:pause'
