@@ -95,9 +95,8 @@ resource "aws_ssmincidents_response_plan" "critical_incident" {
   name = "critical-incident"
 
   incident_template {
-    title         = "critical-incident"
-    impact        = "1"
-    dedupe_string = "critical-incident"
+    title  = "critical-incident"
+    impact = "1"
     incident_tags = {
       Name = "critical-incident"
     }
@@ -115,14 +114,6 @@ resource "aws_ssmincidents_response_plan" "critical_incident" {
       role_arn         = aws_iam_role.service_role_for_ssm_incident_manager.arn
       document_version = "$LATEST"
       target_account   = "RESPONSE_PLAN_OWNER_ACCOUNT"
-      parameter {
-        name   = "Environment"
-        values = ["Production"]
-      }
-      dynamic_parameters = {
-        resources   = "INVOLVED_RESOURCES"
-        incidentARN = "INCIDENT_RECORD_ARN"
-      }
     }
   }
 
