@@ -92,19 +92,19 @@ resource "aws_ssmcontacts_plan" "primary_contact" {
 }
 
 resource "aws_ssmincidents_response_plan" "critical_incident" {
-  name = "critical-incident"
+  name = "CRITICAL-INCIDENT"
 
   incident_template {
-    title  = "critical-incident"
+    title  = "CRITICAL-INCIDENT"
     impact = "1"
     incident_tags = {
-      Name = "critical-incident"
+      Name = "CRITICAL-INCIDENT"
     }
 
-    summary = "Follow Critical Incident process."
+    summary = "Follow CRITICAL INCIDENT process."
   }
 
-  display_name = "critical-service-unavailable"
+  display_name = "CRITICAL-INCIDENT"
   chat_channel = [var.chatbot_sns_topic_notification_arn]
   engagements  = [awscc_ssmcontacts_contact.oncall_schedule.arn]
 
