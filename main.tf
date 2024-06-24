@@ -239,6 +239,13 @@ resource "aws_ssmcontacts_rotation" "business_hours" {
   start_time   = var.rotation_start_time
   time_zone_id = "Europe/Oslo"
   depends_on   = [aws_ssmincidents_replication_set.default]
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to start_time, otherwise it will be updated on each apply
+      start_time,
+    ]
+  }
 }
 
 resource "aws_ssm_document" "critical_incident_runbook" {
