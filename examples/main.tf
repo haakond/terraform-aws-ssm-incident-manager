@@ -3,7 +3,7 @@
 # Refers to output from the previous module provision for AWS Chatbot.
 # Find relevant commit hash from https://github.com/haakond/terraform-aws-ssm-incident-manager/commits/main/
 module "ssm_incident_manager" {
-  source = "git::https://github.com/haakond/terraform-aws-ssm-incident-manager.git?ref=0207532049b386d9038ec10aa735c737cba76748"
+  source = "git::https://github.com/haakond/terraform-aws-ssm-incident-manager.git?ref=c1e31b2287be1e3d0e4f6321b421f3a1da977945"
   providers = {
     aws   = aws
     awscc = awscc
