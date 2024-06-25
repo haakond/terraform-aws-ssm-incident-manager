@@ -1,9 +1,10 @@
 # About
-Terraform AWS sample module to demonstrate AWS Chatbot and Systems Manager - Incident Manager as explained at https://hedrange.com/ .
+Terraform AWS sample module to demonstrate AWS Systems Manager - Incident Manager as explained at https://hedrange.com/ .
 
 ## Usage
 
-See [examples/main.tf](examples/main.tf).
+See [examples/main.tf](examples/main.tf) and [examples/provider.tf](examples/provider.tf).
+Do take note that this module depends on both the aws and awscc Terraform providers.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
